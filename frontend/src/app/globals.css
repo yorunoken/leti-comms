@@ -25,6 +25,13 @@
 
 @layer base {
     :root {
+        --gradient-bg: linear-gradient(135deg, #ffd6ee 0%, #a7abde 100%);
+        --card-bg: rgba(255, 255, 255, 0.8);
+        --card-border: rgba(167, 171, 222, 0.3);
+        --text-primary: #4a4a8f;
+        --text-secondary: #666;
+        --radius: 10px;
+
         --background: 325 100% 98%; /* #FFF0F8 */
         --foreground: 325 80% 50%; /* #FF69B4 */
         --card: 325 100% 95%; /* #FFE6F6 */
@@ -73,10 +80,6 @@
 @layer base {
     * {
         @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-        font-family: "Nunito", sans-serif;
     }
     h1,
     h2,
@@ -147,6 +150,58 @@
 
 .float {
     animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+body {
+    @apply bg-background text-foreground;
+    font-family: "Nunito", sans-serif;
+    background: var(--gradient-bg);
+    background-attachment: fixed;
+}
+
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 body {

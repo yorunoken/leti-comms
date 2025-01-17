@@ -81,7 +81,7 @@ export function TosSection({ isAdmin }: TosSectionProps) {
     return (
         <section id="tos" className="py-16 bg-[#ECD2E0]/20">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-8 text-[#A7ABDE]">Terms of Service</h2>
+                <h2 className="text-3xl font-bold text-center mb-8 text-[#4A4A8F]">Terms of Service</h2>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="tos">
                         {(provided) => (

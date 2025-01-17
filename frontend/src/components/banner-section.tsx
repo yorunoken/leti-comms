@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BannerItem, getBanner, insertBanner, updateBanner } from "@/config/commissions-config";
+import { BannerItem, getBanner, insertBanner } from "@/config/commissions-config";
 import { FaPaypal, FaInstagram, FaTwitter, FaDeviantart } from "react-icons/fa";
 
 type BannerSectionProps = {
@@ -36,10 +36,11 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
     };
 
     return (
-        <header className="relative h-[550px]">
+        <header className="relative h-[550px] overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#A7ABDE]/80 z-10"></div>
             <Image src={banner.image || "/placeholder.svg"} fill alt="Commission Banner" className="object-cover" priority unoptimized />
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 text-white">
-                <div className="text-center space-y-6">
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white">
+                <div className="text-center space-y-6 animate-[slideUp_0.5s_ease-out_0.2s_both] bg-black bg-opacity-25 p-8 rounded-md">
                     {isAdmin && isEditing ? (
                         <Input
                             value={editValues.image}
@@ -49,9 +50,9 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                         />
                     ) : (
                         <>
-                            <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-pink-300">Triantafyllia</h2>
-                            <p className="text-xl md:text-2xl mb-6">I only accept PayPal</p>
-                            <div className="flex justify-center space-x-6">
+                            <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white drop-shadow-lg">Triantafyllia</h2>
+                            <p className="text-xl md:text-2xl mb-6 text-[#FFD6EE]">I only accept PayPal</p>
+                            <div className="flex justify-center space-x-6 animate-[fadeIn_0.5s_ease-out_0.5s_both]">
                                 <a href="#" className="text-white hover:text-pink-300 transition-colors">
                                     <FaPaypal size={32} />
                                 </a>
@@ -70,7 +71,7 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                 </div>
             </div>
             {isAdmin && (
-                <div className="absolute bottom-4 right-4 space-x-2">
+                <div className="absolute bottom-4 right-4 space-x-2 z-30">
                     {isEditing ? (
                         <>
                             <Button
@@ -78,16 +79,16 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                                     setIsEditing(false);
                                     setEditValues(banner);
                                 }}
-                                className="bg-gray-500 hover:bg-gray-600"
+                                className="bg-[#A7ABDE] hover:bg-[#8A8ED8] text-white"
                             >
                                 Cancel
                             </Button>
-                            <Button onClick={handleSave} className="text-black">
+                            <Button onClick={handleSave} className="bg-[#FFD6EE] hover:bg-[#FFC0E6] text-[#4A4A8F]">
                                 Save
                             </Button>
                         </>
                     ) : (
-                        <Button onClick={() => setIsEditing(true)} className="text-black">
+                        <Button onClick={() => setIsEditing(true)} className="bg-[#FFD6EE] hover:bg-[#FFC0E6] text-[#4A4A8F]">
                             Edit
                         </Button>
                     )}

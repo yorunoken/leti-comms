@@ -116,7 +116,7 @@ export function GallerySection({ isAdmin }: GallerySectionProps) {
     return (
         <section id="gallery" className="py-16 bg-[#ECD2E0]/20">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-8 text-[#A7ABDE]">Art Gallery</h2>
+                <h2 className="text-3xl font-bold text-center mb-8 text-[#4A4A8F]">Art Gallery</h2>
                 {artGalleryConfig.length > 0 ? (
                     <DragDropContext onDragEnd={onDragEnd}>
                         <Droppable droppableId="gallery" direction="horizontal">
@@ -201,18 +201,10 @@ function GalleryItem({ item, isAdmin, onEdit, onImageClick, onSave, onDelete, pr
     };
 
     return (
-        <Card className={`flex-none w-[300px] overflow-hidden cute-shadow cute-border bg-[#FFD6EE] ${snapshot.isDragging ? "dragging" : ""}`}>
+        <Card className={`flex-none w-[300px] overflow-hidden glass-card bg-transparent ${snapshot.isDragging ? "dragging" : ""}`}>
             <CardContent className="p-0">
                 <div className="relative aspect-[3/4] cursor-pointer" {...provided.dragHandleProps} onClick={() => onImageClick(editValues.image, editValues.type)}>
-                    <Image
-                        src={editValues.image || "/placeholder.svg"}
-                        alt={editValues.type}
-                        layout="fill"
-                        objectFit="cover"
-                        className="transition-transform hover:scale-105"
-                        onDragStart={(e) => e.preventDefault()}
-                        unoptimized
-                    />
+                    <Image src={editValues.image || "/placeholder.svg"} alt={editValues.type} layout="fill" objectFit="cover" onDragStart={(e) => e.preventDefault()} unoptimized />
                 </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start gap-2 p-4">
@@ -224,7 +216,7 @@ function GalleryItem({ item, isAdmin, onEdit, onImageClick, onSave, onDelete, pr
                     </>
                 ) : (
                     <>
-                        <h3 className="text-[#9a9aed] font-medium">{item.type}</h3>
+                        <h3 className="text-[#4A4A8F] font-medium">{item.type}</h3>
                         {item.client && <p className="text-sm text-[#666] font-medium">Client: {item.client}</p>}
                     </>
                 )}

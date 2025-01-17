@@ -74,7 +74,7 @@ export function PricesSection({ isAdmin }: PricesSectionProps) {
     return (
         <section id="prices" className="py-16">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-2 text-[#A7ABDE]">Pricing</h2>
+                <h2 className="text-3xl font-bold text-center mb-2 text-[#4A4A8F]">Pricing</h2>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="prices">
                         {(provided: DroppableProvided) => (
@@ -135,17 +135,17 @@ function PriceCard({ price, isAdmin, onEdit, onDelete, onImageClick }: PriceCard
     };
 
     return (
-        <Card className="cute-shadow cute-border bg-[#FFD6EE] flex flex-col">
+        <Card className="glass-card bg-transparent flex flex-col animate-[fadeIn_0.5s_ease-out]">
             <CardHeader>
                 {isAdmin && isEditing ? (
                     <Input value={editValues.type} onChange={(e) => handleChange("type", e.target.value)} className="text-2xl font-bold text-[#A7ABDE]" />
                 ) : (
-                    <CardTitle className="text-2xl font-bold text-center text-[#A7ABDE]">{price.type}</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-center text-[#4A4A8F]">{price.type}</CardTitle>
                 )}
             </CardHeader>
             <CardContent className="flex-grow">
                 <div className="aspect-square mb-4 overflow-hidden rounded-lg cursor-pointer" onClick={() => !isEditing && onImageClick(editValues.image, price.type)}>
-                    <Image src={editValues.image} width={9999} height={9999} alt={`${price.type} Example`} className="w-full h-full object-cover transition-transform hover:scale-105" />
+                    <Image src={editValues.image || "/placeholder.svg"} width={9999} height={9999} alt={`${price.type} Example`} className="w-full h-full object-cover" />
                 </div>
                 {isAdmin && isEditing ? (
                     <>
@@ -156,7 +156,7 @@ function PriceCard({ price, isAdmin, onEdit, onDelete, onImageClick }: PriceCard
                 ) : (
                     <>
                         <p className="text-[#666] mb-4 text-center">{price.description}</p>
-                        <p className="text-2xl font-bold text-center text-[#A7ABDE]">{price.price}</p>
+                        <p className="text-2xl font-bold text-center text-[#4A4A8F]">{price.price}</p>
                     </>
                 )}
             </CardContent>
@@ -178,7 +178,7 @@ function PriceCard({ price, isAdmin, onEdit, onDelete, onImageClick }: PriceCard
                 </CardFooter>
             ) : (
                 <CardFooter>
-                    <Button className="w-full cute-button">Order</Button>
+                    <Button className="w-full bg-[#A7ABDE] hover:bg-[#8A8ED8] text-white transition-all duration-300 transform hover:scale-105">Order</Button>
                 </CardFooter>
             )}
         </Card>
