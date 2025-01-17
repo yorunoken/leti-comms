@@ -1,10 +1,9 @@
-import Image from "next/image";
-import { PricesSection } from "@/components/prices-section";
-import { GallerySection } from "@/components/gallery-section";
-import { TosSection } from "@/components/tos-section";
+import { PricesSection } from "@/components/sections/prices-section";
+import { GallerySection } from "@/components/sections/gallery-section";
+import { TosSection } from "@/components/sections/tos-section";
 import { cookies } from "next/headers";
 import { LogoutButton } from "@/components/logout-button";
-import { BannerSection } from "@/components/banner-section";
+import { BannerSection } from "@/components/sections/banner-section";
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD as string;
 

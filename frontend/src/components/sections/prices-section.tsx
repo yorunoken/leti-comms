@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { getPrices, PricesConfig, insertPrice, deletePrice, updatePrice } from "@/config/commissions-config";
-import { ImageModal } from "./image-modal";
+import { ImageModal } from "@/components/modals/image-modal";
 
 type PricesSectionProps = {
     isAdmin: boolean;

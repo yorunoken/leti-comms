@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BannerItem, getBanner, insertBanner } from "@/config/commissions-config";
 import { FaTwitter } from "react-icons/fa";
-import { OsuIcon } from "./icons/OsuIcon";
+import { OsuIcon } from "@/components/icons/OsuIcon";
 
 type BannerSectionProps = {
     isAdmin: boolean;
@@ -16,6 +16,8 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
     const [banner, setBanner] = useState<BannerItem>({ id: 0, image: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [editValues, setEditValues] = useState({ ...banner });
+    const [previewImage, setPreviewImage] = useState("");
+    const [isPreviewValid, setIsPreviewValid] = useState(true);
 
     useEffect(() => {
         async function fetchBanner() {
@@ -28,27 +30,52 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
 
     const handleChange = (field: keyof typeof banner, value: string) => {
         setEditValues({ ...editValues, [field]: value });
+        // Update preview image when URL changes
+        setPreviewImage(value);
+    };
+
+    const handleImageError = () => {
+        setIsPreviewValid(false);
+    };
+
+    const handleImageLoad = () => {
+        setIsPreviewValid(true);
     };
 
     const handleSave = async () => {
-        setBanner(editValues);
-        await insertBanner({ id: Date.now(), image: editValues.image });
-        setIsEditing(false);
+        if (isPreviewValid) {
+            setBanner(editValues);
+            await insertBanner({ id: Date.now(), image: editValues.image });
+            setIsEditing(false);
+        }
     };
 
     return (
         <header className="relative h-[550px] overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#A7ABDE]/80 z-10"></div>
-            <Image src={banner.image || "/placeholder.svg"} fill alt="Commission Banner" className="object-cover" priority unoptimized />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#A7ABDE]/40 z-10"></div>
+
+            <Image
+                src={isEditing ? previewImage || banner.image || "/placeholder.svg" : banner.image || "/placeholder.svg"}
+                fill
+                alt="Commission Banner"
+                className="object-cover"
+                priority
+                unoptimized
+                onError={handleImageError}
+                onLoad={handleImageLoad}
+            />
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white">
                 <div className="text-center space-y-6 animate-[slideUp_0.5s_ease-out_0.2s_both] bg-black bg-opacity-25 p-8 rounded-md">
                     {isAdmin && isEditing ? (
-                        <Input
-                            value={editValues.image}
-                            onChange={(e) => handleChange("image", e.target.value)}
-                            className="text-xl bg-transparent border-white text-white placeholder-gray-300 w-96"
-                            placeholder="Enter image URL"
-                        />
+                        <div className="space-y-4">
+                            <Input
+                                value={editValues.image}
+                                onChange={(e) => handleChange("image", e.target.value)}
+                                className="text-xl bg-transparent border-white text-white placeholder-gray-300 w-96"
+                                placeholder="Enter image URL"
+                            />
+                            {!isPreviewValid && <p className="text-red-500">Invalid image URL</p>}
+                        </div>
                     ) : (
                         <>
                             <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white drop-shadow-lg">Triantafyllia</h2>
@@ -73,12 +100,13 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                                 onClick={() => {
                                     setIsEditing(false);
                                     setEditValues(banner);
+                                    setPreviewImage("");
                                 }}
                                 className="bg-[#A7ABDE] hover:bg-[#8A8ED8] text-white"
                             >
                                 Cancel
                             </Button>
-                            <Button onClick={handleSave} className="bg-[#FFD6EE] hover:bg-[#FFC0E6] text-[#4A4A8F]">
+                            <Button onClick={handleSave} className="bg-[#FFD6EE] hover:bg-[#FFC0E6] text-[#4A4A8F]" disabled={!isPreviewValid}>
                                 Save
                             </Button>
                         </>

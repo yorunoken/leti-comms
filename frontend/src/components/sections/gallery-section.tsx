@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { getGallery, deleteGalleryItem, updateGalleryItem, insertGalleryItem, ArtGallery } from "@/config/commissions-config";
-import { ImageModal } from "./image-modal";
+import { ImageModal } from "@/components/modals/image-modal";
 
 type GallerySectionProps = {
     isAdmin: boolean;
