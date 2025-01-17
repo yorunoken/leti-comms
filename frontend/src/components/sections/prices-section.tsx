@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { getPrices, PricesConfig, insertPrice, deletePrice, updatePrice } from "@/config/commissions-config";
 import { ImageModal } from "@/components/modals/image-modal";
+import { OrderModal } from "@/components/modals/order-modal";
 
 type PricesSectionProps = {
     isAdmin: boolean;
@@ -20,11 +21,15 @@ type PriceCardProps = {
     onEdit: (field: keyof PricesConfig, value: string) => void;
     onDelete: () => void;
     onImageClick: (imageUrl: string, imageAlt: string) => void;
+    setIsOrderModalOpen: (type: boolean) => void;
 };
 
 export function PricesSection({ isAdmin }: PricesSectionProps) {
     const [prices, setPrices] = useState<Array<PricesConfig>>([]);
     const [selectedImage, setSelectedImage] = useState<{ url: string; alt: string } | null>(null);
+
+    const [selectedPriceType, setSelectedPriceType] = useState<string>("");
+    const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
     useEffect(() => {
         async function fetchGallery() {
@@ -89,6 +94,10 @@ export function PricesSection({ isAdmin }: PricesSectionProps) {
                                                     onEdit={(field, value) => handleEdit(index, field, value)}
                                                     onDelete={() => handleDelete(index)}
                                                     onImageClick={(url, alt) => setSelectedImage({ url, alt })}
+                                                    setIsOrderModalOpen={(isOpen) => {
+                                                        setSelectedPriceType(isOpen ? price.type : "");
+                                                        setIsOrderModalOpen(isOpen);
+                                                    }}
                                                 />
                                             </div>
                                         )}
@@ -107,12 +116,21 @@ export function PricesSection({ isAdmin }: PricesSectionProps) {
                     </div>
                 )}
                 {selectedImage && <ImageModal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} imageUrl={selectedImage.url} imageAlt={selectedImage.alt} />}
+                <OrderModal
+                    isOpen={isOrderModalOpen}
+                    onClose={() => {
+                        setIsOrderModalOpen(false);
+                        setSelectedPriceType("");
+                    }}
+                    prices={prices}
+                    initialPriceType={selectedPriceType}
+                />
             </div>
         </section>
     );
 }
 
-function PriceCard({ price, isAdmin, onEdit, onDelete, onImageClick }: PriceCardProps) {
+function PriceCard({ price, isAdmin, onEdit, onDelete, onImageClick, setIsOrderModalOpen }: PriceCardProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [editValues, setEditValues] = useState({ ...price });
 
@@ -178,7 +196,9 @@ function PriceCard({ price, isAdmin, onEdit, onDelete, onImageClick }: PriceCard
                 </CardFooter>
             ) : (
                 <CardFooter>
-                    <Button className="w-full bg-[#A7ABDE] hover:bg-[#8A8ED8] text-white transition-all duration-300 transform hover:scale-105">Order</Button>
+                    <Button onClick={() => setIsOrderModalOpen(true)} className="w-full bg-[#A7ABDE] hover:bg-[#8A8ED8] text-white transition-all duration-300 transform hover:scale-105">
+                        Order
+                    </Button>
                 </CardFooter>
             )}
         </Card>
