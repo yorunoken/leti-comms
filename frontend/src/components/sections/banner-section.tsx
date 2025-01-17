@@ -30,7 +30,6 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
 
     const handleChange = (field: keyof typeof banner, value: string) => {
         setEditValues({ ...editValues, [field]: value });
-        // Update preview image when URL changes
         setPreviewImage(value);
     };
 

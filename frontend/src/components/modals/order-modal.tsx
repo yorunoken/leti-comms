@@ -28,24 +28,31 @@ export function OrderModal({ isOpen, onClose, prices, initialPriceType }: OrderM
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Here you can implement the logic to send the order
-        // For example, sending to an API endpoint or email service
-        console.log({
-            priceType: selectedPrice,
-            discordHandle,
-            email,
-            details,
-            references,
-        });
+        try {
+            const res = await fetch("/api/send-commission", {
+                method: "POST",
+                body: JSON.stringify({ commissionType: selectedPrice, discord: discordHandle, email, commissionDetails: details, references }),
+            });
 
-        // Reset form
-        setSelectedPrice("");
-        setDiscordHandle("");
-        setEmail("");
-        setDetails("");
-        setReferences("");
+            const data = await res.json();
 
-        onClose();
+            if (!res.ok) {
+                alert(data.message || "Something went wrong. Please try again later.");
+                return;
+            }
+
+            setSelectedPrice("");
+            setDiscordHandle("");
+            setEmail("");
+            setDetails("");
+            setReferences("");
+
+            onClose();
+            alert("Successfully sent commission request.");
+        } catch (error) {
+            console.error("Error submitting commission:", error);
+            alert("Failed to submit commission. Please try again later.");
+        }
     };
 
     return (

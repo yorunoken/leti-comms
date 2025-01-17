@@ -1,4 +1,3 @@
-import { verify } from "argon2";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD as string;
 
 export async function POST(request: Request) {
