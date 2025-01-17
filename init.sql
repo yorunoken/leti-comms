@@ -1,0 +1,36 @@
+DROP TABLE IF EXISTS banner;
+
+DROP TABLE IF EXISTS prices;
+
+DROP TABLE IF EXISTS gallery;
+
+DROP TABLE IF EXISTS tos;
+
+CREATE TABLE banner (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE prices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    price VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    `order` INT NOT NULL
+);
+
+CREATE TABLE gallery (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    client VARCHAR(50),
+    `order` INT NOT NULL
+);
+
+CREATE TABLE tos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    `order` INT NOT NULL
+);

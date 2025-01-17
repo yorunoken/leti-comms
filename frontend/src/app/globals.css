@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .scrollbar-thin {
+        scrollbar-width: thin;
+    }
+
+    .scrollbar-thumb-primary::-webkit-scrollbar-thumb {
+        background-color: hsl(var(--primary));
+        border-radius: 9999px;
+    }
+
+    .scrollbar-track-transparent::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar {
+        height: 8px;
+    }
+}
+
+@layer base {
+    :root {
+        --background: 325 100% 98%; /* #FFF0F8 */
+        --foreground: 325 80% 50%; /* #FF69B4 */
+        --card: 325 100% 95%; /* #FFE6F6 */
+        --card-foreground: 325 80% 50%;
+        --popover: 325 100% 95%;
+        --popover-foreground: 325 80% 50%;
+        --primary: 226 100% 94%; /* #E6E6FF */
+        --primary-foreground: 226 70% 70%; /* #9999FF */
+        --secondary: 280 100% 94%; /* #F3E6FF */
+        --secondary-foreground: 280 70% 70%;
+        --muted: 280 100% 94%;
+        --muted-foreground: 280 70% 70%;
+        --accent: 35 100% 94%; /* #FFF3E6 */
+        --accent-foreground: 35 70% 70%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 226 100% 94%;
+        --input: 226 100% 94%;
+        --ring: 226 100% 94%;
+        --radius: 1rem;
+    }
+
+    .dark {
+        --background: 226 30% 15%; /* #1E1E2F */
+        --foreground: 210 40% 98%;
+        --card: 226 30% 20%; /* #28283F */
+        --card-foreground: 210 40% 98%;
+        --popover: 226 30% 20%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 226 70% 70%; /* #9999FF */
+        --primary-foreground: 226 100% 94%; /* #E6E6FF */
+        --secondary: 280 70% 70%; /* #CC99FF */
+        --secondary-foreground: 210 40% 98%;
+        --muted: 280 70% 70%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 35 70% 70%; /* #FFCC99 */
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 280 70% 70%;
+        --input: 280 70% 70%;
+        --ring: 226 70% 70%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: "Nunito", sans-serif;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        /* font-family: "Pacifico", cursive; */
+    }
+}
+
+@layer components {
+    .cute-shadow {
+        box-shadow: 4px 4px 0px rgba(255, 105, 180, 0.3);
+    }
+    .cute-border {
+        border: 2px solid hsl(var(--primary));
+        border-radius: var(--radius);
+    }
+    .cute-button {
+        @apply bg-pink-200 text-pink-700 font-bold py-2 px-6 rounded-full transition-all duration-300 ease-in-out border-2 border-pink-300;
+        &:hover {
+            @apply bg-pink-300 text-pink-800 border-pink-400;
+            transform: scale(1.05) rotate(-2deg);
+        }
+        &:active {
+            @apply bg-pink-400 text-pink-900;
+            transform: scale(0.95);
+        }
+    }
+    .cute-button-secondary {
+        @apply bg-purple-200 text-purple-700 font-bold py-2 px-6 rounded-full transition-all duration-300 ease-in-out border-2 border-purple-300;
+        &:hover {
+            @apply bg-purple-300 text-purple-800 border-purple-400;
+            transform: scale(1.05) rotate(2deg);
+        }
+        &:active {
+            @apply bg-purple-400 text-purple-900;
+            transform: scale(0.95);
+        }
+    }
+
+    .cute-button-accent {
+        @apply bg-yellow-200 text-yellow-700 font-bold py-2 px-6 rounded-full transition-all duration-300 ease-in-out border-2 border-yellow-300;
+        &:hover {
+            @apply bg-yellow-300 text-yellow-800 border-yellow-400;
+            transform: scale(1.05) rotate(-2deg);
+        }
+        &:active {
+            @apply bg-yellow-400 text-yellow-900;
+            transform: scale(0.95);
+        }
+    }
+}
+
+/* Cute animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+body {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FF69B4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19l7-7 3 3-7 7-3-3z'%3E%3C/path%3E%3Cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'%3E%3C/path%3E%3Cpath d='M2 2l7.586 7.586'%3E%3C/path%3E%3Ccircle cx='11' cy='11' r='2'%3E%3C/circle%3E%3C/svg%3E"),
+        auto;
+}
