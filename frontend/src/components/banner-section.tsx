@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BannerItem, getBanner, insertBanner } from "@/config/commissions-config";
-import { FaPaypal, FaInstagram, FaTwitter, FaDeviantart } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { OsuIcon } from "./icons/OsuIcon";
 
 type BannerSectionProps = {
     isAdmin: boolean;
@@ -53,17 +54,11 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                             <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white drop-shadow-lg">Triantafyllia</h2>
                             <p className="text-xl md:text-2xl mb-6 text-[#FFD6EE]">I only accept PayPal</p>
                             <div className="flex justify-center space-x-6 animate-[fadeIn_0.5s_ease-out_0.5s_both]">
-                                <a href="#" className="text-white hover:text-pink-300 transition-colors">
-                                    <FaPaypal size={32} />
-                                </a>
-                                <a href="#" className="text-white hover:text-pink-300 transition-colors">
-                                    <FaInstagram size={32} />
-                                </a>
-                                <a href="#" className="text-white hover:text-pink-300 transition-colors">
+                                <a href="https://twitter.com/Akariimia" target="_blank" className="text-white hover:text-pink-300 transition-colors">
                                     <FaTwitter size={32} />
                                 </a>
-                                <a href="#" className="text-white hover:text-pink-300 transition-colors">
-                                    <FaDeviantart size={32} />
+                                <a href="https://osu.ppy.sh/u/triantafyllia" target="_blank" className="text-white hover:text-pink-300 transition-colors">
+                                    <OsuIcon size={32} />
                                 </a>
                             </div>
                         </>
