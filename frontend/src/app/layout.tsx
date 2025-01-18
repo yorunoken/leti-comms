@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <head>{/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async></script> */}</head>
+            <head>
+                <script defer src="https://cloud.umami.is/script.js" data-website-id="fd5ab5cf-d626-4df4-b3bf-a5216a907c66"></script>
+            </head>
             <body className={`${publicSans.variable} antialiased`}>
                 <ThemeProvider attribute="class" defaultTheme="light">
                     <div className="flex flex-col min-h-screen">

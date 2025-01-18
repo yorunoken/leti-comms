@@ -59,12 +59,12 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                 alt="Commission Banner"
                 className="object-cover"
                 priority
-                unoptimized
+                loading="eager"
                 onError={handleImageError}
                 onLoad={handleImageLoad}
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white">
-                <div className="text-center space-y-6 animate-[slideUp_0.5s_ease-out_0.2s_both] bg-black bg-opacity-25 p-8 rounded-md">
+                <div className="text-center space-y-6 animate-[slideUp_0.5s_ease-out_0.2s_both] bg-black bg-opacity-50 p-8 rounded-md">
                     {isAdmin && isEditing ? (
                         <div className="space-y-4">
                             <Input
