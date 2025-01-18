@@ -34,7 +34,7 @@ export function GallerySection({ isAdmin }: GallerySectionProps) {
     useEffect(() => {
         async function fetchGallery() {
             const gallery = await getGallery();
-            setArtGalleryConfig(gallery);
+            setArtGalleryConfig(gallery.slice(0, 10));
         }
         fetchGallery();
     }, []);
@@ -169,7 +169,7 @@ export function GallerySection({ isAdmin }: GallerySectionProps) {
                     </div>
                 )}
                 <div className="text-center mt-8">
-                    <Link href="/full-gallery">
+                    <Link href="/gallery">
                         <Button className="cute-button-secondary">View Full Gallery</Button>
                     </Link>
                 </div>
