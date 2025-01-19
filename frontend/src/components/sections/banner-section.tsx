@@ -22,8 +22,14 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
     useEffect(() => {
         async function fetchBanner() {
             const bannerData = await getBanner();
-            setBanner(bannerData);
-            setEditValues(bannerData);
+            if (bannerData) {
+                setBanner(bannerData);
+                setEditValues(bannerData);
+            } else {
+                const defaultBanner = { id: 0, image: "/placeholder.svg" };
+                setBanner(defaultBanner);
+                setEditValues(defaultBanner);
+            }
         }
         fetchBanner();
     }, []);

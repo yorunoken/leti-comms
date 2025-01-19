@@ -97,7 +97,7 @@ export interface BannerItem {
     image: string;
 }
 
-export async function getBanner(): Promise<BannerItem> {
+export async function getBanner(): Promise<BannerItem | undefined> {
     const q = await query("SELECT * FROM banner ORDER BY id DESC LIMIT 1;");
     return q[0];
 }
