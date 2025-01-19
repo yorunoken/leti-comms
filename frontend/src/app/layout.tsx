@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CookiesProvider } from "next-client-cookies/server";
 
 const publicSans = Public_Sans({
     subsets: ["latin"],
@@ -29,10 +30,12 @@ export default function RootLayout({
             </head>
             <body className={`${publicSans.variable} antialiased`}>
                 <ThemeProvider attribute="class" defaultTheme="light">
-                    <div className="flex flex-col min-h-screen">
-                        <main className="flex-grow">{children}</main>
-                        <Toaster />
-                    </div>
+                    <CookiesProvider>
+                        <div className="flex flex-col min-h-screen">
+                            <main className="flex-grow">{children}</main>
+                            <Toaster />
+                        </div>
+                    </CookiesProvider>
                 </ThemeProvider>
             </body>
         </html>
