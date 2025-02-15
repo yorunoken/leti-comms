@@ -8,7 +8,7 @@ export function LogoutButton() {
 
     return (
         <Button
-            className="absolute top-4 right-4 z-10"
+            className="absolute top-4 right-4 z-30"
             type="submit"
             variant="secondary"
             onClick={() => {
