@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { BannerItem, getBanner, insertBanner } from "@/config/commissions-config";
 import { FaTwitter } from "react-icons/fa";
 import { OsuIcon } from "@/components/icons/OsuIcon";
+import { KofiIcon } from "../icons/KofiIcon";
 
 type BannerSectionProps = {
     isAdmin: boolean;
@@ -83,14 +84,17 @@ export function BannerSection({ isAdmin }: BannerSectionProps) {
                         </div>
                     ) : (
                         <>
-                            <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white drop-shadow-lg">Triantafyllia</h2>
-                            <p className="text-xl md:text-2xl mb-6 text-[#FFD6EE]">I only accept PayPal</p>
+                            <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white drop-shadow-lg">Akariimia</h2>
+                            <p className="text-xl md:text-2xl mb-6 text-[#FFD6EE]">I only accept Ko-fi</p>
                             <div className="flex justify-center space-x-6 animate-[fadeIn_0.5s_ease-out_0.5s_both]">
                                 <a href="https://twitter.com/Akariimia" target="_blank" className="text-white hover:text-pink-300 transition-colors">
                                     <FaTwitter size={32} />
                                 </a>
-                                <a href="https://osu.ppy.sh/u/triantafyllia" target="_blank" className="text-white hover:text-pink-300 transition-colors">
+                                {/* <a href="https://osu.ppy.sh/u/triantafyllia" target="_blank" className="text-white hover:text-pink-300 transition-colors">
                                     <OsuIcon size={32} />
+                                </a> */}
+                                <a href="https://ko-fi.com/akariimia" target="_blank" className="text-white hover:text-pink-300 transition-colors">
+                                    <KofiIcon size={32} />
                                 </a>
                             </div>
                         </>

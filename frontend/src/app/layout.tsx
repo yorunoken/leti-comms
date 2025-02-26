@@ -11,7 +11,7 @@ const publicSans = Public_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Leti!",
+    title: "Akariimia",
     description: "",
     icons: {
         icon: [{ url: "/favicon.ico", sizes: "256x256" }],

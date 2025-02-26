@@ -30,7 +30,7 @@ export default async function Home() {
             <footer className="bg-primary/80 border-t text-[#666] py-8">
                 <div className="container mx-auto px-4 text-center">
                     <p className="font-medium">With love..</p>
-                    <p className="font-medium">- Leti</p>
+                    <p className="font-medium">- Akariimia</p>
                 </div>
             </footer>
         </div>
