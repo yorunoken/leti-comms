@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { BannerItem, getBanner, insertBanner } from "@/config/commissions-config";
 import { FaTwitter } from "react-icons/fa";
 import { OsuIcon } from "@/components/icons/OsuIcon";
-import { KofiIcon } from "../icons/KofiIcon";
+import { KofiIcon } from "@/components/icons/KofiIcon";
 
 type BannerSectionProps = {
     isAdmin: boolean;
